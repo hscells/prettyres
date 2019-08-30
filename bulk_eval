@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+QRELS=$1
+FOLDER=$2
+GRADE=$3
+shift
+shift
+shift
+args=("$@")
+mkdir -p ${FOLDER}
+for res in ${args[@]}
+do
+    echo ${QRELS} ${res}
+#    trec_eval -q  -m set_F -m set_F.3.0 -M 1000000000 ${QRELS} ${res} > ${FOLDER}/$(basename ${res}).eval
+    entrez_eval -l ${GRADE} -e precision -e recall -e f1 -e f0.5 -e f3 -e nnr -e wss -e ap -e ndcg -q ${FOLDER}/$(basename ${res}).eval.json ${QRELS} ${res}
+done
