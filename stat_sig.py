@@ -9,7 +9,7 @@ from scipy.stats import stats
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument("r", help="list of json evaluation files from entrez_eval", type=str, nargs="+")
+    parser.add_argument("r", help="list of json evaluation files", type=str, nargs="+")
     parser.add_argument("m", help="which measures in the evaluation file to tablify", type=str, nargs="+")
     parser.add_argument("x",
                         help="compute statistical significance between [all] rows, only [one row (specify the row)], or [both]",
