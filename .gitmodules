@@ -1,0 +1,3 @@
+[submodule "tar"]
+	path = tar
+	url = git@github.com:CLEF-TAR/tar.git

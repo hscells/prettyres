@@ -14,8 +14,12 @@ for res in ${args[@]}
 do
     echo ${QRELS} ${res}
     if [[ ${PLAT} == "entrez" ]]; then
-        entrez_eval -l ${GRADE} -e precision -e recall -e f1 -e f0.5 -e f3 -e ndcg -e nnr -q ${FOLDER}/$(basename ${res}).eval.json ${QRELS} ${res}
+        entrez_eval -l ${GRADE} -e precision -e recall -e f1 -e f0.5 -e f3 -e ndcg -e nnr -e num_ret -q ${FOLDER}/$(basename ${res}).entrez.eval.json ${QRELS} ${res}
     elif [[ ${PLAT} == "trec" ]]; then
-        trec_eval -q  -M 1000000000 -l ${GRADE} -m set_P -m set_recall -m ndcg -m map -m Rprec -m recip_rank -m num_q ${QRELS} ${res} > ${FOLDER}/$(basename ${res}).eval
+        trec_eval -q  -M 1000000000 -l ${GRADE} -m set_P -m set_recall -m ndcg -m map -m Rprec -m recip_rank -m num_q ${QRELS} ${res} > ${FOLDER}/$(basename ${res}).trec.eval
+    elif [[ ${PLAT} == "tar18" ]]; then
+        tar18_eval ${QRELS} ${res} > ${FOLDER}/$(basename ${res}).tar18.eval
+    elif [[ ${PLAT} == "tar17" ]]; then
+        tar17_eval ${QRELS} ${res} > ${FOLDER}/$(basename ${res}).tar17.eval
     fi
 done

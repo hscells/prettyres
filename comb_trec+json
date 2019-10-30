@@ -6,8 +6,8 @@ from pprint import pprint
 import trectools
 
 if __name__ == '__main__':
-    j = sys.argv[1]
-    t = sys.argv[2]
+    t = sys.argv[1]
+    j = sys.argv[2]
 
     with open(j, "r") as f:
         jj = json.load(f)
@@ -28,4 +28,4 @@ if __name__ == '__main__':
     for k, v in jj.items():
         x[k] = {**v, **d[k]}
 
-    pprint(x)
+    print(json.dumps(x))
